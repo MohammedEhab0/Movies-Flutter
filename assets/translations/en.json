@@ -1,0 +1,23 @@
+{
+  "General": "General",
+  "Business": "Business",
+  "language": "Language",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "arabic": "Arabic",
+  "english": "English",
+  "Entertainment": "Entertainment",
+  "Health": "Health",
+  "Science": "Science",
+  "Technology": "Technology",
+  "Sports": "Sports",
+  "Good Morning": "Good Morning \n Here is Some News For You.",
+  "viewAll": "View All",
+  "newsApp": "News App",
+  "logOut": "LogOut",
+  "go to home": "Go to Home",
+  "home": "Home",
+  "View Full Article": "View Full Article",
+  "News Details": "News Details"
+}
