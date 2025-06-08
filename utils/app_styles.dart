@@ -42,7 +42,7 @@ import 'app_colors.dart';
       fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.whiteColor
   );
 
-  static TextStyle black14yellow =GoogleFonts.roboto(
+  static TextStyle bold14yellow =GoogleFonts.roboto(
       fontSize: 14,fontWeight: FontWeight.w900,color: AppColors.yellowColor
   );
   static TextStyle regular15yellow =GoogleFonts.roboto(
