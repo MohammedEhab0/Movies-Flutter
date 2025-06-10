@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/ui/homescreen/home_screen.dart';
 
 import 'package:provider/provider.dart';
 
 import 'Providers/SettingProvider.dart';
 
 import 'utils/app_theme.dart';
-
 
 void main() async {
   runApp(
@@ -32,12 +32,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var settingProviders = Provider.of<SettingProviders>(context);
     return MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        theme: AppTheme.lightTheme,
-        debugShowCheckedModeBanner: false,
-        title: 'Movies',
-       );
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
+      initialRoute: HomeScreen.routeName,
+      routes: {
+        HomeScreen.routeName: (context) => HomeScreen(),
+      },
+      title: 'Movies',
+    );
   }
 }
