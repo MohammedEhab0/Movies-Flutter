@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MoviesApp" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="filePath" value="$PROJECT_DIR$/Movies-Flutter-Devolop/lib/main.dart" />
+    <method v="2" />
+  </configuration>
+</component>

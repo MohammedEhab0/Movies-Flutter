@@ -43,4 +43,15 @@ class AppStyles {
       fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.whiteColor);
   static TextStyle medium20White = GoogleFonts.poppins(
       fontSize: 20, fontWeight: FontWeight.w500, color: AppColors.whiteColor);
+  static TextStyle bold36White = GoogleFonts.roboto(
+      fontSize: 36, fontWeight: FontWeight.w700, color: AppColors.whiteColor);
+  static TextStyle bold24White = GoogleFonts.roboto(
+      fontSize: 24, fontWeight: FontWeight.w700, color: AppColors.whiteColor);
+  static TextStyle bold20White = GoogleFonts.roboto(
+      fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.whiteColor);
+  static TextStyle regular20Black = GoogleFonts.roboto(
+      fontSize: 20, fontWeight: FontWeight.w400, color: AppColors.blackColor);
+  static TextStyle regular20White = GoogleFonts.roboto(
+      fontSize: 20, fontWeight: FontWeight.w400, color: AppColors.whiteColor);
+
 }
