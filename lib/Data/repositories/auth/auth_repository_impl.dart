@@ -1,0 +1,42 @@
+import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
+import 'package:movies/Data/data_sources/remote/auth_remote_data_source.dart';
+import 'package:movies/Data/models/LoginResponse.dart';
+import 'package:movies/Data/models/registerResponse.dart';
+import 'package:movies/Data/repositories/auth/auth_repository.dart';
+import 'package:movies/errors/Errors.dart';
+
+@Injectable(as: AuthRepository)
+class AuthRepositoryImpl implements AuthRepository {
+  AuthRemoteDataSource authRemoteDataSource;
+
+  AuthRepositoryImpl({required this.authRemoteDataSource});
+
+  @override
+  Future<Either<Errors, RegisterResponse>> register({
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String phone,
+    required int avaterId, // stay as String
+  }) async {
+    var either = await authRemoteDataSource.register(
+      name: name,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      phone: phone,
+      avaterId: avaterId,
+    );
+    return either.fold((error) => Left(error), (response) => Right(response));
+  }
+
+  @override
+  Future<Either<Errors, LoginResponse>> login(
+      {required String email, required String password}) async {
+    var either =
+        await authRemoteDataSource.login(email: email, password: password);
+    return either.fold((error) => Left(error), (response) => Right(response));
+  }
+}
