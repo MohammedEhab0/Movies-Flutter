@@ -30,13 +30,19 @@ class AppAssets {
   static const String profileIcon = "assets/images/Profil.png";
   static const String profileEmpty = "assets/images/profileEmpty.png";
   static const String search = "assets/images/search.png";
-  static const String selectedExploreIcon = "assets/images/selectedExploreIcon.png";
-  static const String selectedProfileIcon = "assets/images/selectedProfileIcon.png";
-  static const String selectedSearchIcon = "assets/images/selectedSearchIcon.png";
+  static const String selectedExploreIcon =
+      "assets/images/selectedExploreIcon.png";
+  static const String selectedProfileIcon =
+      "assets/images/selectedProfileIcon.png";
+  static const String selectedSearchIcon =
+      "assets/images/selectedSearchIcon.png";
   static const String starIcon = "assets/images/starIcon.png";
   static const String userIcon = "assets/images/userIcon.png";
   static const String googleIcon = "assets/images/googleIcon.png";
   static const String USIcon = "assets/images/USIcon.png";
+  static const String Profiel = "assets/images/Profiel.png";
+  static const String selectedProfielIcon =
+      "assets/images/selectedProfielIcon.png";
 
   // Screenshots
   static const String screenshot1 = "assets/images/screenshot1.png";
@@ -62,5 +68,5 @@ class AppAssets {
   // Splash
   static const String splashScreen = "assets/images/splashScreen.png";
 
-  static const String selectedHomeIcon = "assets/icons/home_icon_selected.png"; 
+  static const String selectedHomeIcon = "assets/images/selectedHomeIcon.png";
 }
