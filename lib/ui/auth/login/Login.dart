@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/UI/auth/login/Cubit/loginStates.dart';
 import 'package:movies/UI/auth/login/Cubit/login_view_model.dart';
 import 'package:movies/UI/auth/register/Register.dart';
+import 'package:movies/ui/homescreen/home_screen.dart';
 
 
 import '../../../utils/app_assets.dart';
@@ -44,14 +45,26 @@ class _LoginState extends State<Login> {
           );
           print(state.error.errorMessage);
         } else if (state is LoginSuccessStates) {
-          DialogUtils.hideLoading(context);
+          DialogUtils.hideLoading(context); // Dismiss the loading dialog first.
+
+          // IMPORTANT: Perform navigation immediately after dismissing loading.
+          // This ensures the current 'context' is still valid for navigation.
+          Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+
+          // Now, show a success message *after* navigation has been initiated.
+          // This dialog will appear on top of the HomeScreen.
+          // We can remove the posAction here as navigation already occurred.
           DialogUtils.showMessage(
-            context: context,
+            context: context, // This 'context' is still valid as it's from the listener
             message: "Login Successfully",
             title: 'Success',
             posActionName: "ok",
-            // --- IMPORTANT TEST: NO NAVIGATION HERE ---
-            // posAction: () { /* No action here for this test */ },
+            // No posAction needed here as navigation has already happened.
+            // The dialog will just dismiss itself on "ok".
+            posAction: () {
+              // Optionally, if you wanted to do something else after dialog close,
+              // but for navigation, it's already done.
+            },
           );
         }
       },

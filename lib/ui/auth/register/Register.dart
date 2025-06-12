@@ -12,8 +12,10 @@ import '../../../utils/validators.dart';
 import '../../Widgets/CustomElevatedButton.dart';
 import '../../Widgets/CustomTextField.dart';
 import '../../Widgets/ToggleLanguage.dart';
-import '../login/Login.dart'; // Ensure Login is imported
+import '../../homescreen/home_screen.dart';
+import '../login/Login.dart';
 import 'Cubit/registerStates.dart';
+
 
 class Register extends StatefulWidget {
   static const routeName = 'Register';
@@ -41,17 +43,24 @@ class _RegisterState extends State<Register> {
             message: state.error.errorMessage,
             title: "Error",
             posActionName: "ok",
-            // --- FIX: No posAction here, so it stays on Register screen after error. ---
           );
           print(state.error.errorMessage);
         } else if (state is RegisterSuccessStates) {
-          DialogUtils.hideLoading(context);
+          DialogUtils.hideLoading(context); // Dismiss loading dialog.
+
+          // IMPORTANT: Perform navigation immediately.
+          Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+
+          // Now, show a success message on the new screen.
           DialogUtils.showMessage(
-            context: context,
+            context: context, // Context from the listener
             message: "Register Successfully",
             title: 'Success',
             posActionName: "ok",
-
+            // No posAction for navigation here.
+            posAction: () {
+              // Dialog will just dismiss itself.
+            },
           );
         }
       },

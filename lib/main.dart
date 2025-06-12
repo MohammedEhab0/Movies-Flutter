@@ -10,7 +10,9 @@ import 'UI/Di/di.dart';
 import 'UI/auth/register/Register.dart';
 import 'utils/app_theme.dart';
 
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   configureDependencies();
   runApp(
