@@ -59,15 +59,20 @@ class AppValidators {
     }
   }
 
+  // Example of updated validator if +20 is required
   static String? validatePhoneNumber(String? val) {
-    if (val == null) {
-      return 'this field is required';
-    } else if (int.tryParse(val.trim()) == null) {
-      return 'enter numbers only';
-    } else if (val.trim().length != 11) {
-      return 'enter value must equal 11 digit';
-    } else {
-      return null;
+    if (val == null || val.trim().isEmpty) {
+      return 'This field is required';
     }
+    String trimmedVal = val.trim();
+
+    // Regex for Egyptian mobile numbers with +20 prefix, 11 digits after it
+    // Total length 14 characters
+    RegExp egyptPhoneWithCountryCodeRegex = RegExp(r'^\+201[0125]\d{8}$');
+
+    if (!egyptPhoneWithCountryCodeRegex.hasMatch(trimmedVal)) {
+      return 'Enter a valid Egyptian phone number (e.g., +201xxxxxxxxx)';
+    }
+    return null;
   }
 }

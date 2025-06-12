@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_styles.dart';
+import 'app_styles.dart'; // Assuming this path is correct for your project
 
 class DialogUtils {
   static void showLoading(
@@ -17,7 +17,7 @@ class DialogUtils {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     message,
-                    style: AppStyles.medium18Header,
+                    style: AppStyles.medium16Grey,
                   ),
                 )
               ],
@@ -27,39 +27,42 @@ class DialogUtils {
   }
 
   static void hideLoading(BuildContext context) {
-    Navigator.pop(context);
+    if (Navigator.of(context, rootNavigator: true).canPop()) {
+      Navigator.of(context, rootNavigator: true).pop();
+    }
   }
 
   static void showMessage(
       {required BuildContext context,
-      required String message,
-      String? title,
-      String? posActionName,
-      Function? posAction,
-      String? negActionName,
-      Function? negAction}) {
+        required String message,
+        String? title,
+        String? posActionName,
+        Function? posAction,
+        String? negActionName,
+        Function? negAction}) {
     List<Widget> actions = [];
     if (posActionName != null) {
       actions.add(TextButton(
           onPressed: () {
-            Navigator.pop(context);
-            // if(posAction != null){
-            //   posAction.call();
-            // }
+            if (Navigator.of(context, rootNavigator: true).canPop()) {
+              Navigator.of(context, rootNavigator: true).pop();
+            }
             posAction?.call();
           },
           child: Text(
             posActionName,
-            style: AppStyles.medium18Header,
+            style: AppStyles.medium16Grey,
           )));
     }
     if (negActionName != null) {
       actions.add(TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            if (Navigator.of(context, rootNavigator: true).canPop()) {
+              Navigator.of(context, rootNavigator: true).pop();
+            }
             negAction?.call();
           },
-          child: Text(negActionName, style: AppStyles.medium18Header)));
+          child: Text(negActionName, style: AppStyles.medium16Grey)));
     }
     showDialog(
         context: context,
@@ -67,11 +70,11 @@ class DialogUtils {
           return AlertDialog(
             content: Text(
               message,
-              style: AppStyles.medium18Header,
+              style: AppStyles.medium16Grey,
             ),
             title: Text(
               title ?? '',
-              style: AppStyles.medium18Header,
+              style: AppStyles.medium16Grey,
             ),
             actions: actions,
           );

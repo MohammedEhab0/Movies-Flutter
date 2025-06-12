@@ -1,14 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/UI/auth/login/Login.dart';
+import 'package:movies/utils/my_BlocObserver.dart';
 
 import 'package:provider/provider.dart';
 
 import 'Providers/SettingProvider.dart';
 
+import 'UI/Di/di.dart';
+import 'UI/auth/register/Register.dart';
 import 'utils/app_theme.dart';
 
 
 void main() async {
+  Bloc.observer = MyBlocObserver();
+  configureDependencies();
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
@@ -38,6 +45,13 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.lightTheme,
         debugShowCheckedModeBanner: false,
         title: 'Movies',
+      initialRoute: Register.routeName,
+      routes: {
+
+        Login.routeName: (context) => Login(),
+        Register.routeName: (context) => Register(),
+
+      },
        );
   }
 }
