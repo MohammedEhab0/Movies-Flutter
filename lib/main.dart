@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Movies',
       initialRoute: Register.routeName,
+      home:HomeScreen() ,
       routes: {
         Login.routeName: (context) => Login(),
         Register.routeName: (context) => Register(),

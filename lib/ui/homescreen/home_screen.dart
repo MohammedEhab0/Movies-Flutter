@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: tabsList[selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: AppColors.LightblackColor,
+          color: AppColors.lightBlack,
           borderRadius: BorderRadius.circular(20),
         ),
         margin: EdgeInsets.all(16),
