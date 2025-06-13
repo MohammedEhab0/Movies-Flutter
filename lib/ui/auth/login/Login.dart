@@ -113,7 +113,7 @@ class _LoginState extends State<Login> {
                   SizedBox(height: height * .02),
                   CustomElevatedButton(
                     onPressed: () => viewModel.login(),
-                    textButton: "Login".tr(),
+                    textButton: "login".tr(),
                     bgColor: AppColors.yellowColor,
                   ),
                   SizedBox(height: height * .02),

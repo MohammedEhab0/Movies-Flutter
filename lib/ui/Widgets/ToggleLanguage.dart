@@ -1,31 +1,53 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
-import 'package:movies/utils/app_assets.dart';
-import 'package:movies/utils/app_colors.dart';
+import 'package:movies/utils/app_assets.dart'; // Make sure this path is correct
+import 'package:movies/utils/app_colors.dart'; // Make sure this path is correct
 import 'package:provider/provider.dart';
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
-import 'package:movies/Providers/SettingProvider.dart';
+import 'package:movies/Providers/SettingProvider.dart'; // Make sure this path is correct
 
-class ToggleLanguage extends StatelessWidget {
+
+class ToggleLanguage extends StatefulWidget {
+  @override
+  _ToggleLanguageState createState() => _ToggleLanguageState();
+}
+
+class _ToggleLanguageState extends State<ToggleLanguage> {
+  // We'll manage the selected language state locally
+  // true for Arabic (EG), false for English (US)
+  bool _isArabicSelected = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Initialize _isArabicSelected based on the current locale from EasyLocalization
+    // This makes sure the toggle reflects the current app language when it loads.
+    _isArabicSelected = context.locale.languageCode == 'ar';
+  }
+
+  void _changeLanguage(BuildContext context, bool selectArabic) {
+    var settingProvider = Provider.of<SettingProviders>(context, listen: false);
+    // Only update state if the selection is actually changing
+    if (_isArabicSelected != selectArabic) {
+      setState(() {
+        _isArabicSelected = selectArabic;
+      });
+      settingProvider.changeLanguage(context, selectArabic ? 'ar' : 'en');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    var settingProvider = Provider.of<SettingProviders>(context);
+    const double flagSize = 32.0; // Size of the flag images
+    const double toggleHeight = 45.0; // Overall height of the toggle
+    const double borderPadding = 8.0; // Extra space around flag for border
 
-    // Determine the current language to control the toggle
-    bool isArabic = context.locale.languageCode == 'ar';
-
-    return AnimatedToggleSwitch<bool>.dual(
-      current: isArabic,
-      first: false, // English
-      second: true, // Arabic
-      spacing: 2.0,
-      style: ToggleStyle(
-        borderColor: Colors.transparent,
-        backgroundColor: AppColors.blackColor,
-        indicatorColor: AppColors.yellowColor,
-        borderRadius: BorderRadius.circular(30),
-        indicatorBorderRadius: BorderRadius.circular(30),
+    return Container(
+      height: toggleHeight,
+      // The total width will be determined by the children of the Row
+      // (2 * (flagSize + borderPadding)) + internalSpacing
+      decoration: BoxDecoration(
+        color: AppColors.blackColor, // The dark background
+        borderRadius: BorderRadius.circular(toggleHeight / 2), // Fully rounded corners
         boxShadow: const [
           BoxShadow(
             color: Colors.black26,
@@ -34,22 +56,61 @@ class ToggleLanguage extends StatelessWidget {
           ),
         ],
       ),
-      height: 45,
-      borderWidth: 2.0,
-      onChanged: (bool value) {
-        settingProvider.changeLanguage(context, value ? 'ar' : 'en');
-      },
-      iconBuilder: (value) => value
-          ? Image.asset(AppAssets.EGIcon)
-          :  Image.asset(AppAssets.USIcon),
-      // textBuilder: (value) => Text(
-      //   value ? 'arabic'.tr() : 'english'.tr(),
-      //   style: TextStyle(
-      //     fontSize: 14,
-      //     fontWeight: FontWeight.w600,
-      //     color: Colors.white,
-      //   ),
-      // ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min, // Make row only as wide as its children
+        children: [
+          // English (US) Flag Option
+          _buildFlagOption(
+            imageAsset: AppAssets.USIcon,
+            isSelected: !_isArabicSelected, // True if English is selected
+            flagSize: flagSize,
+            borderPadding: borderPadding,
+            onTap: () => _changeLanguage(context, false), // Select English
+          ),
+          // A small separator/gap between the flags
+          const SizedBox(width: 8),
+
+          // Arabic (EG) Flag Option
+          _buildFlagOption(
+            imageAsset: AppAssets.EGIcon,
+            isSelected: _isArabicSelected, // True if Arabic is selected
+            flagSize: flagSize,
+            borderPadding: borderPadding,
+            onTap: () => _changeLanguage(context, true), // Select Arabic
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Helper method to build each individual flag option
+  Widget _buildFlagOption({
+    required String imageAsset,
+    required bool isSelected,
+    required double flagSize,
+    required double borderPadding,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200), // Smooth animation for border
+        curve: Curves.easeInOut,
+        width: flagSize + borderPadding, // Width to fit flag + border
+        height: flagSize + borderPadding, // Height to fit flag + border
+        alignment: Alignment.center, // Center the flag inside the container
+        decoration: BoxDecoration(
+          shape: BoxShape.circle, // Make the border circular
+          border: isSelected
+              ? Border.all(color: AppColors.yellowColor, width: 2.0)
+              : null, // No border if not selected
+        ),
+        child: CircleAvatar(
+          backgroundColor: Colors.transparent, // Ensure flag is visible
+          backgroundImage: AssetImage(imageAsset),
+          radius: flagSize / 2, // Half of flagSize to fit
+        ),
+      ),
     );
   }
 }
