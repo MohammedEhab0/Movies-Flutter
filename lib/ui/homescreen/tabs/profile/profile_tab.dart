@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:movies/UI/Widgets/CustomElevatedButton.dart';
 import 'package:movies/utils/app_assets.dart';
 import 'package:movies/utils/app_colors.dart';
 
@@ -19,7 +22,7 @@ class ProfileTab extends StatelessWidget {
 
 
               Container(
-                height: 284,
+                height: 290,
                 color: AppColors.lightBlack,
                 padding:  EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 child: Column(
@@ -65,38 +68,31 @@ class ProfileTab extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 2,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              fixedSize: Size(10, 40),
-                              backgroundColor: AppColors.yellowColor,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          child: CustomElevatedButton(
+                            bgColor: AppColors.yellowColor,
+                            onPressed:(){
+
+                            },
+                            textButton: 'Edit profile',
                             ),
 
-                            onPressed: () {},
-                            child:  Text('Edit Profile', style: AppStyles.regular20Black),
                           ),
-                        ),
+
                         SizedBox(width: 8),
                         Expanded(
                           flex: 1,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              fixedSize: Size(10, 40),
+                          child: CustomElevatedButton(
 
-                              backgroundColor: AppColors.redColor,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                            textButton: 'Exit',
+                            bgColor: AppColors.redColor,
+                            icon: Icons.logout,
+                            textColor: Colors.white,
+                            textStyle: AppStyles.regular20White,
+                            onPressed: () {
+                              // Action
+                            },
+                          )
 
-                            ),
-                            onPressed: () {},
-                            child:  Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Exit', style:AppStyles.regular20White),
-                                SizedBox(width: 4,),
-                                Icon(Icons.logout, color: AppColors.whiteColor),
-                              ],
-                            ),
-                          ),
                         ),
                       ],
                     ),
@@ -147,3 +143,5 @@ class ProfileTab extends StatelessWidget {
     );
   }
 }
+
+

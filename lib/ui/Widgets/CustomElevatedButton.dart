@@ -7,11 +7,15 @@ import '../../utils/app_styles.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   Function onPressed;
-
+  final IconData? icon;
   String textButton;
   Color bgColor;
-
-  CustomElevatedButton({required this.onPressed, required this.textButton,required this.bgColor});
+  final Color? textColor;
+  final TextStyle? textStyle;
+  CustomElevatedButton({required this.onPressed,this.icon ,required this.textButton,
+    required this.bgColor, this.textColor,
+     this.textStyle,
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +34,22 @@ class CustomElevatedButton extends StatelessWidget {
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+
           children: [
             Text(
               textButton,
-              style: AppStyles.regular20black,
+              style:textStyle ??
+                  AppStyles.regular20black.copyWith(
+                    color: textColor ?? AppColors.blackColor ,
             ),
+            ),
+        if (icon != null) ...[
+    const SizedBox(width: 6),
+    Icon(icon, color: textColor ?? AppColors.blackColor),
           ],
-        ));
+    ],
+        )
+    );
   }
 }

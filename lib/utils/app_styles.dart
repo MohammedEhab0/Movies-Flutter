@@ -112,6 +112,10 @@ import 'app_colors.dart';
   static TextStyle medium20White =GoogleFonts.inter(
   fontSize:20,fontWeight: FontWeight.w500,color: AppColors.whiteColor
   );
+  static TextStyle bold36White = GoogleFonts.roboto(
+      fontSize: 36, fontWeight: FontWeight.w700, color: AppColors.whiteColor);
+  static TextStyle regular20Black = GoogleFonts.roboto(
+      fontSize: 20, fontWeight: FontWeight.w400, color: AppColors.blackColor);
 
   }
 
