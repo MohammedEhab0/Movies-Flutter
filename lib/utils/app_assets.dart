@@ -69,4 +69,7 @@ class AppAssets {
   static const String splashScreen = "assets/images/splashScreen.png";
 
   static const String selectedHomeIcon = "assets/images/selectedHomeIcon.png";
+
+  static const String AvailableNow = "assets/images/AvailableNow.png";
+  static const String WatchNow = "assets/images/WatchNow.png";
 }
