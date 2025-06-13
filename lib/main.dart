@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/UI/auth/login/Login.dart';
+import 'package:movies/ui/homescreen/tabs/profile/profile_tab.dart';
 import 'package:movies/utils/my_BlocObserver.dart';
 import 'package:movies/ui/homescreen/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -46,14 +47,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Movies',
       initialRoute: Register.routeName,
+      home:HomeScreen() ,
       routes: {
-
         Login.routeName: (context) => Login(),
         Register.routeName: (context) => Register(),
         HomeScreen.routeName: (context) => HomeScreen(),
-
       },
        );
-
   }
 }

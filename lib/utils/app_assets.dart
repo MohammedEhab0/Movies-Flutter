@@ -28,7 +28,7 @@ class AppAssets {
   static const String passwordIcon = "assets/images/passwordIcon.png";
   static const String phoneIcon = "assets/images/phoneIcon.png";
   static const String profileIcon = "assets/images/Profil.png";
-  static const String profileEmpty = "assets/images/profileEmpty.png";
+  static const String profileEmpty = "assets/images/profleEmpty.png";
   static const String search = "assets/images/search.png";
   static const String selectedExploreIcon =
       "assets/images/selectedExploreIcon.png";
