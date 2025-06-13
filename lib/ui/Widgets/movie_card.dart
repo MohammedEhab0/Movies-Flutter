@@ -60,10 +60,10 @@ class MovieCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(width: 4),
-                    SvgPicture.asset(
+                    SizedBox(width: width! *.1),
+                    Image.asset(
                       AppAssets.starIcon,
-                      color: AppColors.yellowColor,
+                      // color: AppColors.yellowColor,
                       width: 15,
                       height: 15,
                     ),

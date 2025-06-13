@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/ui/Widgets/movie_card.dart';
@@ -53,7 +54,7 @@ class _HomePageState extends State<HomeTab> {
                     BoxShadow(
                       color: AppColors.blackColor,
                       blurRadius: 8,
-                      offset: const Offset(0, 4),
+                      offset: const Offset(0, 1),
                     ),
                   ],
                   image: DecorationImage(
@@ -81,7 +82,7 @@ class _HomePageState extends State<HomeTab> {
                       SizedBox(height: height * 0.03),
                       MovieSlider(
                         height: height,
-                        slider: movies,
+                        slider: movies, onPageChanged:changeGrenIndex,
                       ),
                       SizedBox(height: height * 0.03),
                       Center(
@@ -124,7 +125,7 @@ class _HomePageState extends State<HomeTab> {
                               padding: EdgeInsets.only(right: width * 0.03),
                               child: MovieCard(
                                 width: width * 0.38,
-                                height: height * 0.33,
+                                height: height * 0.3,
                                 movie: movie,
                                 onPressed: () {
                                   if (movie.genres != movies[newIndex].genres) {
@@ -151,7 +152,7 @@ class _HomePageState extends State<HomeTab> {
     );
   }
 
-  void changeGrenIndex(int index) {
+  void changeGrenIndex(int index , CarouselPageChangedReason reason) {
     setState(() {
       newIndex = index;
     });

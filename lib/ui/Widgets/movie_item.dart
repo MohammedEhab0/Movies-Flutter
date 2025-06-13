@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:movies/Data/models/MovieRespone.dart';
 import 'package:movies/utils/app_colors.dart';
 
+import '../../utils/app_assets.dart';
+
 class ItemBuilder extends StatelessWidget {
   ItemBuilder({
     super.key,
@@ -67,7 +69,12 @@ class ItemBuilder extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 4),
-                  Icon(Icons.star, color: AppColors.yellowColor, size: 16),
+              Image.asset(
+                AppAssets.starIcon,
+                // color: AppColors.yellowColor,
+                width: 15,
+                height: 15,
+              ),
                 ],
               ),
             ),
