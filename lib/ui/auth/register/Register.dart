@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +26,19 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   RegisterViewModel viewModel = getIt<RegisterViewModel>();
+  List<String> avatarList =[AppAssets.character1,
+    AppAssets.character2,
+    AppAssets.character3,
+    AppAssets.character4,
+    AppAssets.character5,
+    AppAssets.character6,
+    AppAssets.character7,
+    AppAssets.character8,
+    AppAssets.character9,
+  ];
+
+  // Initialize avatarId with a default value (e.g., 0 for the first avatar)
+  int avatarId = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +97,30 @@ class _RegisterState extends State<Register> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: height * .05),
-                  SizedBox(
-                    height: height * .23,
-                    child: Image.asset(AppAssets.logoSplash),
+                  CarouselSlider(
+                    options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          // Update avatarId when the page changes
+                          setState(() {
+                            avatarId = index;
+                          });
+                        },
+                        enlargeFactor: .5,
+                        viewportFraction: .381,
+                        enlargeCenterPage: true,
+                        height: height * .21),
+                    items: List.generate(avatarList.length, (index) => index ).map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                              margin: EdgeInsets.symmetric(horizontal: .5),
+                              decoration: BoxDecoration(),
+                              child:Image.asset(avatarList[i],fit:BoxFit.fitWidth));
+                        },
+                      );
+                    }).toList(),
                   ),
-                  SizedBox(height: height * .05),
+
                   CustomTextField(
                     controller: viewModel.nameController,
                     prefixIcon: Image.asset(AppAssets.nameIcon),
@@ -137,11 +169,11 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: height * .02),
                   CustomElevatedButton(
-                    onPressed: () => viewModel.register(avaterId: 1),
+                    onPressed: () => viewModel.register(avaterId: avatarId), // Pass the updated avatarId
                     textButton: "create account".tr(),
                     bgColor: AppColors.yellowColor,
                   ),
-                  SizedBox(height: height * .02),
+                  SizedBox(height: height * .01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -161,13 +193,13 @@ class _RegisterState extends State<Register> {
                       ),
                     ],
                   ),
-                  SizedBox(height: height * .02),
+                  SizedBox(height: height * .01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ToggleLanguage(),
                     ],
-                  ),
+                  ),SizedBox(height: height * .02),
                 ],
               ),
             ),

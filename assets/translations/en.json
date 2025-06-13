@@ -44,5 +44,8 @@
   "rate": "Rate, Review, and Learn",
   "rate Description": "Share your thoughts on the movies you've watched. Dive deep into film details and help others discover great movies with your reviews.",
   "start": "Start Watching Now",
-  "finish": "Finish"
+  "finish": "Finish",
+  "already have account": "Already have account",
+  "create account": "Create Account",
+  "Do not have account": "Do not have account"
 }
